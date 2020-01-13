@@ -66,6 +66,14 @@ public class Color {
     this.red = red;
   }
 
+  public String asString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append("RED: ").append(getRed()).append("\n");
+      sb.append("BLUE: ").append(getBlue()).append("\n");
+      sb.append("GREEN: ").append(getGreen()).append("\n");
+      return sb.toString();
+  }
+
   /**
    * Set the contribution of the green component to <tt>this</tt> Color.
    *
