@@ -41,16 +41,4 @@ public class Main {
   }
 
 
-
-  public int aRed(Color c1, Color c2) {
-    return c1.ge
-  }
-
-  public static Color averageColour(Color c1, Color c2) {
-    int red1 = (c1.getRed() + c2.getRed()) / 2;
-    int blue1 = (c1.getBlue() + c2.getBlue()) / 2;
-    int green1 = (c1.getGreen() + c2.getGreen()) / 2;
-    return new Color(red1,green1,blue1);
-  }
-
 }
