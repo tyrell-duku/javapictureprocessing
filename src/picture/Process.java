@@ -1,6 +1,5 @@
 package picture;
 
-import java.awt.Color;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -115,35 +114,37 @@ public class Process {
 
     for (int i = 0; i < smallestW; i++) {
       for (int j = 0; j < smallestH; j++) {
-        int finali = i;
-        int finalj = j;
+        int finalI = i;
+        int finalJ = j;
         List<Color> cols = pictures.stream()
-                .map(k -> k.getPixel(finali, finalj))
+                .map(k -> k.getPixel(finalJ, finalJ))
                 .collect(Collectors.toList());
         p.setPixel(i, j, averageColour(cols));
       }
     }
-    p.savePicture();
+
+    Utils.savePicture(p, placeToSave);
 
 
   }
 
-  public static Color averageColour(List<Color> colours) {
-    Color c = new Color(0, 0, 0);
-    int length = colours.size();
-    int reds = colours.stream()
-            .reduce(0, (x, y) -> (x + y) / 2)
-            .ifPresent(c::setRed);
+  private static Color averageColour(List<Color> colours) {
 
-    int blues = colours.stream()
-            .reduce(0, (x, y) -> (x + y) / 2)
-            .ifPresent(c::setBlue);
+   int size = colours.size();
+   int reds = colours.stream()
+                     .map(x -> x.getRed())
+                     .reduce(0, (x,y) -> x + y);
 
-    int greens = colours.stream()
-            .reduce(0, (x, y) -> (x + y) / 2)
-            .ifPresent(c::setGreen);
+   int blues = colours.stream()
+                      .map(x -> x.getBlue())
+                      .reduce(0, (x,y) -> x + y);
 
-    return c;
+   int greens = colours.stream()
+                       .map(x -> x.getGreen())
+                       .reduce(0, (x,y) -> x + y);
+
+   return new Color(reds / size, greens / size, blues / size);
+
 
   }
 
