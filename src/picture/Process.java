@@ -1,9 +1,5 @@
 package picture;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
->>>>>>> 0e45a2a29d1c3ee47d55b413fbe4dfc014111465
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -118,38 +114,28 @@ public class Process {
       for (int j = 0; j < smallestH; j++) {
         int finalI = i;
         int finalJ = j;
-<<<<<<< HEAD
         List<Color> cols =
             pictures.stream().map(k -> k.getPixel(finalI, finalJ)).collect(Collectors.toList());
 
         p.setPixel(i, j, averageColour(cols));
       }
     }
-=======
         List<Color> cols = pictures.stream()
                 .map(k -> k.getPixel(finalJ, finalJ))
                 .collect(Collectors.toList());
         p.setPixel(i, j, averageColour(cols));
       }
     }
-
-    Utils.savePicture(p, placeToSave);
-
->>>>>>> 0e45a2a29d1c3ee47d55b413fbe4dfc014111465
-
     Utils.savePicture(p, outputLocation);
   }
 
   private static Color averageColour(List<Color> colours) {
-<<<<<<< HEAD
     int size = colours.size();
     int reds = colours.stream().map(Color::getRed).reduce(0, Integer::sum);
     int blues = colours.stream().map(Color::getBlue).reduce(0, Integer::sum);
     int greens = colours.stream().map(Color::getGreen).reduce(0, Integer::sum);
     return new Color(reds / size, greens / size, blues / size);
   }
-=======
-
    int size = colours.size();
    int reds = colours.stream()
                      .map(x -> x.getRed())
@@ -164,8 +150,6 @@ public class Process {
                        .reduce(0, (x,y) -> x + y);
 
    return new Color(reds / size, greens / size, blues / size);
-
->>>>>>> 0e45a2a29d1c3ee47d55b413fbe4dfc014111465
 
   public static void blur(String[] args) {
     String placeToSave = args[2];
