@@ -67,11 +67,11 @@ public class Color {
   }
 
   public String asString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append("RED: ").append(getRed()).append("\n");
-      sb.append("BLUE: ").append(getBlue()).append("\n");
-      sb.append("GREEN: ").append(getGreen()).append("\n");
-      return sb.toString();
+    StringBuilder sb = new StringBuilder();
+    sb.append("RED: ").append(getRed()).append("\n");
+    sb.append("BLUE: ").append(getBlue()).append("\n");
+    sb.append("GREEN: ").append(getGreen()).append("\n");
+    return sb.toString();
   }
 
   /**
