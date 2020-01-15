@@ -1,5 +1,6 @@
 package picture;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -120,12 +121,7 @@ public class Process {
         p.setPixel(i, j, averageColour(cols));
       }
     }
-        List<Color> cols = pictures.stream()
-                .map(k -> k.getPixel(finalJ, finalJ))
-                .collect(Collectors.toList());
-        p.setPixel(i, j, averageColour(cols));
-      }
-    }
+
     Utils.savePicture(p, outputLocation);
   }
 
@@ -136,20 +132,6 @@ public class Process {
     int greens = colours.stream().map(Color::getGreen).reduce(0, Integer::sum);
     return new Color(reds / size, greens / size, blues / size);
   }
-   int size = colours.size();
-   int reds = colours.stream()
-                     .map(x -> x.getRed())
-                     .reduce(0, (x,y) -> x + y);
-
-   int blues = colours.stream()
-                      .map(x -> x.getBlue())
-                      .reduce(0, (x,y) -> x + y);
-
-   int greens = colours.stream()
-                       .map(x -> x.getGreen())
-                       .reduce(0, (x,y) -> x + y);
-
-   return new Color(reds / size, greens / size, blues / size);
 
   public static void blur(String[] args) {
     String placeToSave = args[2];
@@ -165,11 +147,11 @@ public class Process {
           List<Color> surrounding = new ArrayList<>();
 
           for (int deltaI = -1; deltaI <= 1; deltaI++) {
-            for(int deltaJ = -1; deltaJ <= 1; deltaJ++) {
+            for (int deltaJ = -1; deltaJ <= 1; deltaJ++) {
               surrounding.add(loaded.getPixel(i + deltaI, j + deltaJ));
             }
           }
-          newPic.setPixel(i,j,averageColour(surrounding));
+          newPic.setPixel(i, j, averageColour(surrounding));
         }
       }
     }
