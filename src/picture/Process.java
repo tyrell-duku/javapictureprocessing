@@ -1,10 +1,6 @@
 package picture;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class Process {
 
@@ -101,13 +97,19 @@ public class Process {
     List<String> picsString = argsList.subList(1, args.length - 1);
 
     List<Picture> pictures =
-        picsString.stream().map(Utils::loadPicture).collect(Collectors.toList());
+        picsString.stream()
+        .map(Utils::loadPicture)
+        .collect(Collectors.toList());
 
-    int smallestW =
-        Collections.min(pictures.stream().map(Picture::getWidth).collect(Collectors.toList()));
+    int smallestW = Collections.min(
+                                pictures.stream()
+                                        .map(Picture::getWidth)
+                                        .collect(Collectors.toList()));
 
-    int smallestH =
-        Collections.min(pictures.stream().map(Picture::getHeight).collect(Collectors.toList()));
+    int smallestH = Collections.min(
+                                pictures.stream()
+                                        .map(Picture::getHeight)
+                                        .collect(Collectors.toList()));
 
     Picture p = Utils.createPicture(smallestW, smallestH);
 
@@ -116,7 +118,9 @@ public class Process {
         int finalI = i;
         int finalJ = j;
         List<Color> cols =
-            pictures.stream().map(k -> k.getPixel(finalI, finalJ)).collect(Collectors.toList());
+            pictures.stream()
+                    .map(k -> k.getPixel(finalI, finalJ))
+                    .collect(Collectors.toList());
 
         p.setPixel(i, j, averageColour(cols));
       }
@@ -127,9 +131,16 @@ public class Process {
 
   private static Color averageColour(List<Color> colours) {
     int size = colours.size();
-    int reds = colours.stream().map(Color::getRed).reduce(0, Integer::sum);
-    int blues = colours.stream().map(Color::getBlue).reduce(0, Integer::sum);
-    int greens = colours.stream().map(Color::getGreen).reduce(0, Integer::sum);
+    int reds = colours.stream()
+                      .map(Color::getRed)
+                      .reduce(0, Integer::sum);
+    int blues = colours.stream()
+                       .map(Color::getBlue)
+                       .reduce(0, Integer::sum);
+    int greens = colours.stream()
+                        .map(Color::getGreen)
+                        .reduce(0, Integer::sum);
+                        
     return new Color(reds / size, greens / size, blues / size);
   }
 
